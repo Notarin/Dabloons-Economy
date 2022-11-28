@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7cc90227-e4f6-4578-9562-9091f6f2d3bd" name="Changes" comment="Initial files">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/MySQL/MySQLHandler.java" afterDir="false" />
+    <list default="true" id="7cc90227-e4f6-4578-9562-9091f6f2d3bd" name="Changes" comment="Fixed sql connect disconnecting unexpectedly.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SQL/SQLHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SQL/SQLHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +42,15 @@
     "last_opened_file_path": "C:/Users/amays/Documents/GitHub/Pride-bot"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="Dabloons-Economy" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -59,7 +67,77 @@
       <option name="project" value="LOCAL" />
       <updated>1669616071424</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Blank code preparing for sql">
+      <created>1669616645790</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1669616645790</updated>
+    </task>
+    <task id="LOCAL-00003" summary="IDE stuff">
+      <created>1669616660963</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1669616660963</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Check if db exists, if not, create">
+      <created>1669618385841</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1669618385841</updated>
+    </task>
+    <task id="LOCAL-00005" summary="removed unused boolean value for checks">
+      <created>1669618422063</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1669618422063</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Slight rewording of stdout">
+      <created>1669618478065</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1669618478065</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Switched SQLException from clause to method signature">
+      <created>1669618593640</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1669618593640</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Changed console output to only one line">
+      <created>1669621826605</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1669621826605</updated>
+    </task>
+    <task id="LOCAL-00009" summary="added connect method">
+      <created>1669626039054</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1669626039054</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Removed useless code.">
+      <created>1669626931073</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1669626931073</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Fixed sql connect disconnecting unexpectedly.">
+      <created>1669626961582</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1669626961582</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -75,6 +153,30 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial files" />
+    <MESSAGE value="Blank code preparing for sql" />
+    <MESSAGE value="IDE stuff" />
+    <MESSAGE value="Check if db exists, if not, create" />
+    <MESSAGE value="removed unused boolean value for checks" />
+    <MESSAGE value="Slight rewording of stdout" />
+    <MESSAGE value="Switched SQLException from clause to method signature" />
+    <MESSAGE value="Changed console output to only one line" />
+    <MESSAGE value="added connect method" />
+    <MESSAGE value="Removed useless code." />
+    <MESSAGE value="Fixed sql connect disconnecting unexpectedly." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed sql connect disconnecting unexpectedly." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.ClassNotFoundException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="org.sqlite.SQLiteException" package="org.sqlite" />
+          <option name="timeStamp" value="4" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
