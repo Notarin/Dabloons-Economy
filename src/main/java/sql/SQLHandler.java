@@ -26,8 +26,7 @@ public class SQLHandler {
     }
     public static Connection connect() throws ClassNotFoundException, SQLException {
         Class.forName("org.sqlite.JDBC");
-        Connection conn = DriverManager.getConnection("jdbc:sqlite:database.db");
-        return conn;
+        return DriverManager.getConnection("jdbc:sqlite:database.db");
     }
     public static void createUsersStructure(Connection connection) throws SQLException {
         Statement statement = connection.createStatement();
