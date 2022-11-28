@@ -10,12 +10,11 @@ public class SQLHandler {
     public static void init() throws ClassNotFoundException {
         checks();
     }
-    public static boolean checks() throws ClassNotFoundException {
+    public static void checks() throws ClassNotFoundException {
         File db = new File("database.db");
         if (!db.exists() || db.isDirectory()) {
             createDB();
         }
-        return true;
     }
     public static void createDB() throws ClassNotFoundException {
         String url = "jdbc:sqlite:database.db";
