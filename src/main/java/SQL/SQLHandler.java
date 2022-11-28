@@ -24,7 +24,7 @@ public class SQLHandler {
             if (conn != null) {
                 DatabaseMetaData meta = conn.getMetaData();
                 System.out.println("The driver name is " + meta.getDriverName());
-                System.out.println("A new database has been created.");
+                System.out.println("The database has been created.");
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
