@@ -8,6 +8,7 @@ import java.sql.SQLException;
 public class SQLHandler {
     public static void init() throws ClassNotFoundException, SQLException {
         checks();
+        Connection connection = connect();
     }
     public static void checks() throws ClassNotFoundException, SQLException {
         File db = new File("database.db");
@@ -21,6 +22,14 @@ public class SQLHandler {
         Class.forName("org.sqlite.JDBC");
         try (Connection ignored = DriverManager.getConnection("jdbc:sqlite:database.db")) {
             System.out.println("The database has been created.");
+        }
+    }
+    public static Connection connect() throws ClassNotFoundException, SQLException {
+        String url = "jdbc:sqlite:database.db";
+        System.out.println(url);
+        Class.forName("org.sqlite.JDBC");
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:database.db")) {
+            return conn;
         }
     }
 }
