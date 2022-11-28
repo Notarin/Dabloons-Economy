@@ -17,16 +17,12 @@ public class SQLHandler {
         }
     }
     public static void createDB() throws ClassNotFoundException, SQLException {
-        String url = "jdbc:sqlite:database.db";
-        System.out.println(url);
         Class.forName("org.sqlite.JDBC");
         try (Connection ignored = DriverManager.getConnection("jdbc:sqlite:database.db")) {
             System.out.println("The database has been created.");
         }
     }
     public static Connection connect() throws ClassNotFoundException, SQLException {
-        String url = "jdbc:sqlite:database.db";
-        System.out.println(url);
         Class.forName("org.sqlite.JDBC");
         try (Connection conn = DriverManager.getConnection("jdbc:sqlite:database.db")) {
             return conn;
