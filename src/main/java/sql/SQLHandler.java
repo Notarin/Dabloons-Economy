@@ -31,11 +31,12 @@ public class SQLHandler {
     }
     public static void createUsersStructure(Connection connection) throws SQLException {
         Statement statement = connection.createStatement();
-        statement.execute("CREATE TABLE IF NOT EXISTS users (\n" +
-                "id integer PRIMARY KEY,\n" +
-                "username text NOT NULL,\n" +
-                "password text NOT NULL,\n" +
-                "discordId text)");
+        statement.execute("""
+                CREATE TABLE IF NOT EXISTS users (
+                id integer PRIMARY KEY,
+                username text NOT NULL,
+                password text NOT NULL,
+                discordId text)""");
     }
     public static void initDB(Connection connection) throws SQLException {
         createUsersStructure(connection);
