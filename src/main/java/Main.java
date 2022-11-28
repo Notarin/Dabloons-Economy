@@ -1,4 +1,4 @@
-import SQL.SQLHandler;
+import sql.SQLHandler;
 
 import java.sql.SQLException;
 
