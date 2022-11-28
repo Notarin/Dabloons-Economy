@@ -24,8 +24,7 @@ public class SQLHandler {
     }
     public static Connection connect() throws ClassNotFoundException, SQLException {
         Class.forName("org.sqlite.JDBC");
-        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:database.db")) {
-            return conn;
-        }
+        Connection conn = DriverManager.getConnection("jdbc:sqlite:database.db");
+        return conn;
     }
 }
