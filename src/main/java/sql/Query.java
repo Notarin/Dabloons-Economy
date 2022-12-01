@@ -4,6 +4,7 @@ import sql.objects.user;
 
 import java.sql.*;
 
+@SuppressWarnings("unused")
 public class Query {
     private static user constructUser(ResultSet sqlUser) throws SQLException {
         return new user(
