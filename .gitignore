@@ -1,5 +1,7 @@
 ### Project ###
 database.db
+config.yml
+token.yml
 
 target/
 !.mvn/wrapper/maven-wrapper.jar
