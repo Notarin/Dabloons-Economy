@@ -1,20 +1,20 @@
 package sql;
 
-import sql.objects.user;
+import sql.objects.User;
 
 import java.sql.*;
 
 @SuppressWarnings("unused")
 public class Query {
-    private static user constructUser(ResultSet sqlUser) throws SQLException {
-        return new user(
+    private static User constructUser(ResultSet sqlUser) throws SQLException {
+        return new User(
                 sqlUser.getInt("id"),
                 sqlUser.getString("username"),
                 sqlUser.getString("password"),
                 sqlUser.getInt("discordId")
         );
     }
-    public static user userById(Connection connection, Integer userId) throws SQLException {
+    public static User userById(Connection connection, Integer userId) throws SQLException {
         PreparedStatement statement = connection.prepareStatement("""
                 SELECT id, username, password, discordId FROM users WHERE id = ?
                 """);
