@@ -1,10 +1,13 @@
+package config;
+
+import config.objects.Config;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.*;
 import java.util.Map;
 
 @SuppressWarnings("unused")
-public class Config {
+public class ConfigHandler {
 
     public static Map<String, Object> load() {
         check(loadConfig(), loadExample());
