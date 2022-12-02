@@ -3,6 +3,7 @@ import org.yaml.snakeyaml.Yaml;
 import java.io.*;
 import java.util.Map;
 
+@SuppressWarnings("unused")
 public class Config {
 
     public static Map<String, Object> load() {
