@@ -9,9 +9,9 @@ import java.util.Map;
 @SuppressWarnings("unused")
 public class ConfigHandler {
 
-    public static Map<String, Object> load() {
+    public static Config load() {
         check(loadConfig(), loadExample());
-        return loadConfig();
+        return constructConfig(loadConfig());
     }
 
     private static Map<String, Object> loadConfig() {
@@ -24,7 +24,7 @@ public class ConfigHandler {
             //set the config object
             config = yaml.load(inputStream);
         } catch (FileNotFoundException e) {
-            System.out.println("[ERROR] Config file missing, please copy config.example.yml to config.yml and configure values");
+            System.out.println("[ERROR] config.Config file missing, please copy config.example.yml to config.yml and configure values");
             throw new RuntimeException(e);
         }
 
@@ -54,7 +54,7 @@ public class ConfigHandler {
                 System.out.println("[WARNING] Key found in config not present in example config: " + configIteration.getKey());
             }
             if (configIteration.getValue().equals(exampleConfig.get(configIteration.getKey()))) {
-                System.out.println("[ERROR] Config value unchanged, please configure key \"" + configIteration.getKey() + "\"");
+                System.out.println("[ERROR] config.Config value unchanged, please configure key \"" + configIteration.getKey() + "\"");
                 System.exit(1);
             }
         }
@@ -67,6 +67,11 @@ public class ConfigHandler {
                 System.exit(1);
             }
         }
+    }
 
+    private static Config constructConfig(Map<String, Object> config) {
+        return new Config(
+                Integer.parseInt(config.get("httpServerPort").toString())
+        );
     }
 }
