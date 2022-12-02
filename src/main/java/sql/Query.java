@@ -4,6 +4,7 @@ import sql.objects.User;
 
 import java.sql.*;
 
+//TODO: Remove warning suppression for "unused" when finally using query classes.
 @SuppressWarnings("unused")
 public class Query {
     private static User constructUser(ResultSet sqlUser) throws SQLException {
