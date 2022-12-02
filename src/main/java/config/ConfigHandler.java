@@ -24,7 +24,7 @@ public class ConfigHandler {
             //set the config object
             config = yaml.load(inputStream);
         } catch (FileNotFoundException e) {
-            System.out.println("[ERROR] config.Config file missing, please copy config.example.yml to config.yml and configure values");
+            System.out.println("[ERROR] Config file missing, please copy config.example.yml to config.yml and configure values");
             throw new RuntimeException(e);
         }
 
