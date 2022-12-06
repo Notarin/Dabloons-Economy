@@ -15,11 +15,12 @@ public class Query {
                 sqlUser.getInt("discordId")
         );
     }
+
     public static User userById(Connection connection, Integer userId) throws SQLException {
         PreparedStatement statement = connection.prepareStatement("""
                 SELECT id, username, password, discordId FROM users WHERE id = ?
                 """);
-        statement.setInt(1,1);
+        statement.setInt(1, 1);
         return constructUser(statement.executeQuery());
     }
 }

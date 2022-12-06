@@ -9,6 +9,7 @@ public class SQLHandler {
         Connection connection = connect();
         connection.close();
     }
+
     public static void checks() throws ClassNotFoundException, SQLException {
         File db = new File("database.db");
         if (!db.exists() || db.isDirectory()) {
@@ -18,16 +19,19 @@ public class SQLHandler {
             connection.close();
         }
     }
+
     public static void createDB() throws ClassNotFoundException, SQLException {
         Class.forName("org.sqlite.JDBC");
         try (Connection ignored = DriverManager.getConnection("jdbc:sqlite:database.db")) {
             System.out.println("The database has been created.");
         }
     }
+
     public static Connection connect() throws ClassNotFoundException, SQLException {
         Class.forName("org.sqlite.JDBC");
         return DriverManager.getConnection("jdbc:sqlite:database.db");
     }
+
     public static void createUsersStructure(Connection connection) throws SQLException {
         Statement statement = connection.createStatement();
         statement.execute("""
@@ -37,6 +41,7 @@ public class SQLHandler {
                 password text NOT NULL,
                 discordId text)""");
     }
+
     public static void initDB(Connection connection) throws SQLException {
         createUsersStructure(connection);
     }
