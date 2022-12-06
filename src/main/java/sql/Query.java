@@ -1,12 +1,9 @@
 package sql;
 
-import sql.objects.User;
-
-import java.sql.*;
-
 //TODO: Remove warning suppression for "unused" when finally using query classes.
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "CommentedOutCode", "GrazieInspection"})
 public class Query {
+/* // Commented out because I'm planning on revising how users work, I plan on instead relying on Discord Oauth2
     private static User constructUser(ResultSet sqlUser) throws SQLException {
         return new User(
                 sqlUser.getInt("id"),
@@ -23,4 +20,5 @@ public class Query {
         statement.setInt(1, 1);
         return constructUser(statement.executeQuery());
     }
+*/
 }
