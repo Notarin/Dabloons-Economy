@@ -6,8 +6,8 @@ import io.javalin.Javalin;
 public class WebServer {
     public static void init(Config config) {
         //See https://javalin.io/documentation
-        Javalin.create(/*config*/)
-                .get("/", ctx -> ctx.result("Hello World"))
-                .start(config.httpServerPort());
+        Javalin server = Javalin.create(/*config*/);
+        Pages.load(server);
+        server.start(config.httpServerPort());
     }
 }
