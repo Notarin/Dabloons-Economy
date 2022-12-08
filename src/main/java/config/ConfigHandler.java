@@ -73,7 +73,10 @@ public class ConfigHandler {
 
     private static Config constructConfig(Map<String, Object> config) {
         return new Config(
-                Integer.parseInt(config.get("httpServerPort").toString())
+                Integer.parseInt(config.get("httpServerPort").toString()),
+                config.get("discordClientId").toString(),
+                config.get("discordClientSecret").toString(),
+                config.get("discordAppRedirectUri").toString()
         );
     }
 }
