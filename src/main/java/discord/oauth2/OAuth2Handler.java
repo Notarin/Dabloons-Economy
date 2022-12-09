@@ -39,19 +39,26 @@ public class OAuth2Handler {
         BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
         String inputLine;
         StringBuilder content = new StringBuilder();
+        // Read the response line by line and append it to the 'content' string
         while ((inputLine = reader.readLine()) != null) {
             content.append(inputLine);
         }
+        // Close the reader
         reader.close();
 
         // Return the response from the API as a JSON string
         return content.toString();
     }
 
+    // Method that makes a POST request to the Discord API to exchange an authorization code for an access token
     public static String getAccessTokenFromCode(Config config, String code) throws IOException, InterruptedException {
+        // Construct the request object
         HttpRequest request = HttpRequest.newBuilder()
+                // Set the URL of the Discord API endpoint to send the request to
                 .uri(URI.create("https://discord.com/api/oauth2/token"))
+                // Set the request body's Content-Type
                 .header("Content-Type", "application/x-www-form-urlencoded")
+                // Set the request method to POST and the request body
                 .method("POST", HttpRequest.BodyPublishers.ofString(
                         "client_id=" + config.discordClientId() +
                         "&client_secret=" + config.discordClientSecret() +
@@ -59,9 +66,12 @@ public class OAuth2Handler {
                         "&code=" + code +
                         "&redirect_uri=" + config.discordAppRedirectUri()))
                 .build();
+        // Send the request and read the response
         HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        // Parse the response body as JSON
         Gson gson = new Gson();
         JsonObject json = gson.fromJson(response.body(), JsonObject.class);
+        // Return the access token from the JSON object
         return json.get("access_token").getAsString();
     }
 }
