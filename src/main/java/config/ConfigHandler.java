@@ -76,7 +76,8 @@ public class ConfigHandler {
                 Integer.parseInt(config.get("httpServerPort").toString()),
                 config.get("discordClientId").toString(),
                 config.get("discordClientSecret").toString(),
-                config.get("discordAppRedirectUri").toString()
+                config.get("discordAppRedirectUri").toString(),
+                config.get("discordOAuthUrl").toString()
         );
     }
 }

@@ -7,7 +7,7 @@ public class WebServer {
     public static void init(Config config) {
         //See https://javalin.io/documentation
         Javalin server = Javalin.create();
-        Pages.load(server);
+        Pages.load(server, config);
         server.start(config.httpServerPort());
     }
 }
