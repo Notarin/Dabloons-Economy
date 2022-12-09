@@ -3,6 +3,7 @@ import config.objects.Config;
 import sql.SQLHandler;
 import webUI.WebServer;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 
 public class Main {
@@ -11,7 +12,8 @@ public class Main {
         Config config = ConfigHandler.load();
         // Initialize the database
         SQLHandler.init();
+        Connection connection = SQLHandler.connect();
         // Initialize the web server
-        WebServer.init(config);
+        WebServer.init(connection, config);
     }
 }

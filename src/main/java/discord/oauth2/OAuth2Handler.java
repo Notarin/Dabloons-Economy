@@ -3,6 +3,7 @@ package discord.oauth2;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import config.objects.Config;
+import sql.objects.User;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -73,5 +74,22 @@ public class OAuth2Handler {
         JsonObject json = gson.fromJson(response.body(), JsonObject.class);
         // Return the access token from the JSON object
         return json.get("access_token").getAsString();
+    }
+    public static User constructUser(String userJson) {
+        // Create a Gson instance
+        Gson gson = new Gson();
+        // Parse the JSON string and convert it to a JsonObject
+        JsonObject userObject = gson.fromJson(userJson, JsonObject.class);
+        // Extract the necessary information from the JsonObject and use it to construct a User object
+        return new User(
+                userObject.get("id").getAsString(),
+                userObject.get("username").getAsString(),
+                userObject.get("avatar").getAsString(),
+                userObject.get("discriminator").getAsInt(),
+                userObject.get("banner").getAsString(),
+                userObject.get("locale").getAsString(),
+                userObject.get("email").getAsString(),
+                userObject.get("verified").getAsBoolean()
+        );
     }
 }
