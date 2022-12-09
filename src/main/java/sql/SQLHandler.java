@@ -55,10 +55,15 @@ public class SQLHandler {
         // Use the statement to execute an SQL query that creates the 'users' table
         statement.execute("""
                 CREATE TABLE IF NOT EXISTS users (
-                id integer PRIMARY KEY,
+                discordId text PRIMARY KEY,
                 username text NOT NULL,
-                password text NOT NULL,
-                discordId text)""");
+                avatar text NOT NULL,
+                discriminator integer NOT NULL,
+                banner text NOT NULL,
+                locale text NOT NULL,
+                email text NOT NULL,
+                verified boolean NOT NULL
+                )""");
     }
 
     // Initialize the database by creating the necessary tables

@@ -1,6 +1,13 @@
 package sql.objects;
 
-@SuppressWarnings("unused")
 // User is a record class that represents a user in the database
-public record User(Integer id, String username, String password, Integer discordId) {
-}
+public record User(
+        String discordId,
+        String username,
+        String avatar,
+        Integer discriminator,
+        String banner,
+        String locale,
+        String email,
+        Boolean verified
+) {}
