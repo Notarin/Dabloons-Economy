@@ -4,6 +4,7 @@ import config.ConfigHandler;
 import config.objects.Config;
 import discord.oauth2.OAuth2Handler;
 import io.javalin.Javalin;
+import io.javalin.http.Context;
 import sql.Query;
 import sql.objects.User;
 
@@ -18,6 +19,14 @@ public class Pages {
     public static void load(Javalin server, Connection sqlDatabaseConnection, Config config) {
         // define a route for the root path and return the index HTML page
         server.get("/", ctx -> ctx.html(PageData.indexHtml()));
+        // define route for the profile path and return profile HTML page
+        server.get("/profile", ctx -> {
+            if (ctx.sessionAttribute("loggedIn") == "true") {
+                ctx.html(PageData.profileHtml(ctx));
+            } else {
+                ctx.redirect("/");
+            }
+        });
         // define a route for the login path and redirect to the Discord OAuth URL
         server.get("/login", ctx -> {
             if (ctx.sessionAttribute("loggedIn") != "true") {
@@ -56,11 +65,24 @@ class PageData {
     // method that returns the index HTML page
     public static String indexHtml() throws IOException {
         String indexHtml;
-
         // get the path to the index.html file
         Path path = Paths.get("Pages/index.html");
         // read the contents of the file and convert to a string
         indexHtml = new String(Files.readAllBytes(path));
+        return indexHtml;
+    }
+
+    public static String profileHtml(Context ctx) throws IOException {
+        String indexHtml;
+        // get path to profile.html file
+        Path path = Paths.get("Pages/profile.html");
+        // read file contents and convert to string
+        indexHtml = new String(Files.readAllBytes(path))
+                .replace("{ID}", "ID: " + ctx.sessionAttribute("discordId"))
+                .replace("{USERNAME}", "Username: " + ctx.sessionAttribute("username"))
+                .replace("{DISCRIMINATOR}", "Discriminator: " + ctx.sessionAttribute("discriminator"))
+                .replace("{EMAIL}", "Email: " + ctx.sessionAttribute("email"))
+        ;
         return indexHtml;
     }
 }
