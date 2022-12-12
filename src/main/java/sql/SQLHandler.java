@@ -2,6 +2,8 @@ package sql;
 
 import java.io.File;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SQLHandler {
     // Initialize the database by connecting to it and creating the necessary tables if they don't exist
@@ -27,6 +29,61 @@ public class SQLHandler {
             initDB(connection);
             // Close the connection
             connection.close();
+        } else {
+            checkColumns();
+        }
+    }
+
+    public static void checkColumns() throws SQLException, ClassNotFoundException {
+        Connection connection = connect();
+        try {
+            DatabaseMetaData meta = connection.getMetaData();
+            ResultSet res = meta.getColumns(null, null, "users", null);
+            List<String> columns = new ArrayList<>();
+            while (res.next()) {
+                columns.add(res.getString("COLUMN_NAME"));
+            }
+            if (!columns.contains("discordId")) {
+                addColumn("discordId", "text", connection);
+            }
+            if (!columns.contains("username")) {
+                addColumn("username", "text", connection);
+            }
+            if (!columns.contains("avatar")) {
+                addColumn("avatar", "text", connection);
+            }
+            if (!columns.contains("discriminator")) {
+                addColumn("discriminator", "integer", connection);
+            }
+            if (!columns.contains("banner")) {
+                addColumn("banner", "text", connection);
+            }
+            if (!columns.contains("locale")) {
+                addColumn("locale", "text", connection);
+            }
+            if (!columns.contains("email")) {
+                addColumn("email", "text", connection);
+            }
+            if (!columns.contains("verified")) {
+                addColumn("verified", "boolean", connection);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private static void addColumn(String name, String type, Connection connection) {
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute("ALTER TABLE users ADD COLUMN " + name + " " + type + " NOT NULL");
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
