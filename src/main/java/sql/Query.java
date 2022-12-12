@@ -7,9 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-//TODO: Remove warning suppression for "unused" when finally using query classes.
 public class Query {
-// Commented out because I'm planning on revising how users work, I plan on instead relying on Discord Oauth2
     private static User constructUser(ResultSet sqlUser) throws SQLException {
         return new User(
                 sqlUser.getString("discordId"),
