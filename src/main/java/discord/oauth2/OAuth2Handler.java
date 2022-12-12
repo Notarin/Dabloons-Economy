@@ -15,8 +15,6 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-//TODO: remove unused suppression when finally used
-@SuppressWarnings("unused")
 public class OAuth2Handler {
     // Method that makes a GET request to the Discord API to get information about the user
     public static String getUserJsonByAccessToken(String accessToken) throws Exception {
