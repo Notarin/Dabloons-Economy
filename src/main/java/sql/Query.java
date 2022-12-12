@@ -34,7 +34,7 @@ public class Query {
                     locale,
                     email,
                     verified
-                FROM users WHERE id = ?
+                FROM users WHERE discordId = ?
                 """);
         statement.setString(1, userId);
         ResultSet sqlUser = statement.executeQuery();
