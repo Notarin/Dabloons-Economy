@@ -37,7 +37,12 @@ public class Query {
                 FROM users WHERE id = ?
                 """);
         statement.setString(1, userId);
-        return constructUser(statement.executeQuery());
+        ResultSet sqlUser = statement.executeQuery();
+        if (sqlUser.next()) {
+            return constructUser(sqlUser);
+        } else {
+            return null;
+        }
     }
 
     // Save a User to the 'users' table in the database
