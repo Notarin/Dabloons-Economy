@@ -1,84 +1,19 @@
 package sql;
 
-import java.io.File;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class SQLHandler {
     // Initialize the database by connecting to it and creating the necessary tables if they don't exist
     public static void init() throws ClassNotFoundException, SQLException {
         // Check if the database file exists and create it if it doesn't
-        checks();
+        Checks.checks();
         // Connect to the database
         Connection connection = connect();
         // Close the connection
         connection.close();
     }
 
-    // Check if the database file exists and create it if it doesn't
-    public static void checks() throws ClassNotFoundException, SQLException {
-        // Create a File object for the database file
-        File db = new File("database.db");
-        // If the database file doesn't exist or is a directory, create it
-        if (!db.exists() || db.isDirectory()) {
-            createDB();
-            // Create the database
-            Connection connection = connect();
-            // Initialize the database by creating the necessary tables
-            initDB(connection);
-            // Close the connection
-            connection.close();
-        } else {
-            checkColumns();
-        }
-    }
-
-    public static void checkColumns() throws SQLException, ClassNotFoundException {
-        Connection connection = connect();
-        try {
-            DatabaseMetaData meta = connection.getMetaData();
-            ResultSet res = meta.getColumns(null, null, "users", null);
-            List<String> columns = new ArrayList<>();
-            while (res.next()) {
-                columns.add(res.getString("COLUMN_NAME"));
-            }
-            if (!columns.contains("discordId")) {
-                addColumn("discordId", "text", connection);
-            }
-            if (!columns.contains("username")) {
-                addColumn("username", "text", connection);
-            }
-            if (!columns.contains("avatar")) {
-                addColumn("avatar", "text", connection);
-            }
-            if (!columns.contains("discriminator")) {
-                addColumn("discriminator", "integer", connection);
-            }
-            if (!columns.contains("banner")) {
-                addColumn("banner", "text", connection);
-            }
-            if (!columns.contains("locale")) {
-                addColumn("locale", "text", connection);
-            }
-            if (!columns.contains("email")) {
-                addColumn("email", "text", connection);
-            }
-            if (!columns.contains("verified")) {
-                addColumn("verified", "boolean", connection);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    private static void addColumn(String name, String type, Connection connection) {
+    public static void addColumn(String name, String type, Connection connection) {
         try {
             Statement statement = connection.createStatement();
             statement.execute("ALTER TABLE users ADD COLUMN " + name + " " + type + " NOT NULL");
