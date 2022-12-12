@@ -95,8 +95,8 @@ public class Query {
             statement.setString(6, user.locale());
             statement.setString(7, user.email());
             statement.setBoolean(8, user.verified());
-            // Execute the prepared statement
         }
+        // Execute the prepared statement
         statement.execute();
     }
 }
