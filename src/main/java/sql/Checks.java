@@ -58,14 +58,18 @@ public class Checks {
             ResultSet res = meta.getColumns(null, null, "users", null);
             List<String> columns = new ArrayList<>();
             while (res.next()) columns.add(res.getString("COLUMN_NAME"));
-            if (!columns.contains("discordId")) SQLHandler.addColumn("users", "discordId", "text", connection);
-            if (!columns.contains("username")) SQLHandler.addColumn("users", "username", "text", connection);
-            if (!columns.contains("avatar")) SQLHandler.addColumn("users", "avatar", "text", connection);
-            if (!columns.contains("discriminator")) SQLHandler.addColumn("users", "discriminator", "integer", connection);
-            if (!columns.contains("banner")) SQLHandler.addColumn("users", "banner", "text", connection);
-            if (!columns.contains("locale")) SQLHandler.addColumn("users", "locale", "text", connection);
-            if (!columns.contains("email")) SQLHandler.addColumn("users", "email", "text", connection);
-            if (!columns.contains("verified")) SQLHandler.addColumn("users", "verified", "boolean", connection);
+            String table;
+            {
+                table = "users";
+                if (!columns.contains("discordId")) SQLHandler.addColumn(table, "discordId", "text", connection);
+                if (!columns.contains("username")) SQLHandler.addColumn(table, "username", "text", connection);
+                if (!columns.contains("avatar")) SQLHandler.addColumn(table, "avatar", "text", connection);
+                if (!columns.contains("discriminator")) SQLHandler.addColumn(table, "discriminator", "integer", connection);
+                if (!columns.contains("banner")) SQLHandler.addColumn(table, "banner", "text", connection);
+                if (!columns.contains("locale")) SQLHandler.addColumn(table, "locale", "text", connection);
+                if (!columns.contains("email")) SQLHandler.addColumn(table, "email", "text", connection);
+                if (!columns.contains("verified")) SQLHandler.addColumn(table, "verified", "boolean", connection);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
