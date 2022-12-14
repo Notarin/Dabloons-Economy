@@ -1,4 +1,4 @@
-package sql.objects;
+package com.dabloons.sql.objects;
 
 // User is a record class that represents a user in the database
 public record User(

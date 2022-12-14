@@ -1,9 +1,9 @@
-package discord.oauth2;
+package com.dabloons.oauth2;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import config.objects.Config;
-import sql.objects.User;
+import com.dabloons.config.objects.Config;
+import com.dabloons.sql.objects.User;
 
 import java.io.BufferedReader;
 import java.io.IOException;

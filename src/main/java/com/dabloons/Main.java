@@ -1,7 +1,9 @@
-import config.ConfigHandler;
-import config.objects.Config;
-import sql.SQLHandler;
-import webUI.WebServer;
+package com.dabloons;
+
+import com.dabloons.config.ConfigHandler;
+import com.dabloons.config.objects.Config;
+import com.dabloons.sql.SQLHandler;
+import com.dabloons.webUI.WebServer;
 
 import java.sql.Connection;
 import java.sql.SQLException;

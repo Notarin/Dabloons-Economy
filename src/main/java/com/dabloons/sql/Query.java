@@ -1,6 +1,6 @@
-package sql;
+package com.dabloons.sql;
 
-import sql.objects.User;
+import com.dabloons.sql.objects.User;
 
 import java.sql.*;
 

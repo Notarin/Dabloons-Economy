@@ -1,12 +1,12 @@
-package webUI;
+package com.dabloons.webUI;
 
-import config.ConfigHandler;
-import config.objects.Config;
-import discord.oauth2.OAuth2Handler;
+import com.dabloons.config.ConfigHandler;
+import com.dabloons.config.objects.Config;
+import com.dabloons.oauth2.OAuth2Handler;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
-import sql.Query;
-import sql.objects.User;
+import com.dabloons.sql.Query;
+import com.dabloons.sql.objects.User;
 
 import java.io.IOException;
 import java.nio.file.Files;

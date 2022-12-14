@@ -1,6 +1,6 @@
-package config;
+package com.dabloons.config;
 
-import config.objects.Config;
+import com.dabloons.config.objects.Config;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.*;
@@ -32,7 +32,7 @@ public class ConfigHandler {
         } catch (FileNotFoundException e) {
             // if the configuration file is not found, print an error message and throw a runtime exception
             System.out.println(
-                    "[ERROR] Config file missing, please copy config.example.yml to config.yml and configure values"
+                    "[ERROR] Config file missing, please copy config.example.yml to com.dabloons.config.yml and configure values"
             );
             throw new RuntimeException(e);
         }
@@ -68,7 +68,7 @@ public class ConfigHandler {
             // check if the key in the configuration map exists in the example configuration map
             if (exampleConfig.get(configIteration.getKey()) == null) {
                 // if the key does not exist in the example configuration map, print a warning message
-                System.out.println("[WARNING] Key found in config not present in example config: " + configIteration.getKey());
+                System.out.println("[WARNING] Key found in config not present in example com.dabloons.config: " + configIteration.getKey());
             }
 
             // check if the value of the key in the configuration map is equal to the value of the key in the example configuration map
@@ -83,7 +83,7 @@ public class ConfigHandler {
             // check if the key in the example configuration map exists in the configuration map
             if (config.get(exampleConfigIteration.getKey()) == null) {
                 // if the key does not exist in the configuration map, print an error message and exit the program
-                System.out.println("[ERROR] Key found in example config not present in config: " + exampleConfigIteration.getKey() +
+                System.out.println("[ERROR] Key found in example config not present in com.dabloons.config: " + exampleConfigIteration.getKey() +
                         "\nPlease copy all missing values and set them.");
                 System.exit(1);
             }

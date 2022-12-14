@@ -1,4 +1,4 @@
-package config.objects;
+package com.dabloons.config.objects;
 
 // Config is a record that holds the configuration data for the app
 public record Config(

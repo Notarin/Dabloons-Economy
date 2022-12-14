@@ -1,6 +1,6 @@
-package webUI;
+package com.dabloons.webUI;
 
-import config.objects.Config;
+import com.dabloons.config.objects.Config;
 import io.javalin.Javalin;
 
 import java.sql.Connection;

@@ -1,4 +1,4 @@
-package sql;
+package com.dabloons.sql;
 
 import java.io.File;
 import java.sql.Connection;
@@ -26,6 +26,7 @@ public class Checks {
             Connection connection = SQLHandler.connect();
             checkTables(connection);
             checkColumns(connection);
+            connection.close();
         }
     }
 
@@ -42,12 +43,6 @@ public class Checks {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
     }
 
@@ -71,12 +66,6 @@ public class Checks {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
     }
 }

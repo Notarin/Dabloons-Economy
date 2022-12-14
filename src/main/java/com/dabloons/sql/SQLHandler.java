@@ -1,4 +1,4 @@
-package sql;
+package com.dabloons.sql;
 
 import java.sql.*;
 
