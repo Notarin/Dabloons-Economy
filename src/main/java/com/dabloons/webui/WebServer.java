@@ -6,7 +6,9 @@ import io.javalin.Javalin;
 import java.sql.Connection;
 
 public class WebServer {
-    // Initialize the web server by creating a Javalin server instance and starting it, see https://javalin.io/documentation for more info
+    // Initialize the web server
+    // by creating a Javalin server instance and starting it,
+    // see https://javalin.io/documentation for more info
     public static void init(Connection sqlDatabaseConnection, Config config) {
         // Create a Javalin server instance
         Javalin server = Javalin.create();

@@ -10,7 +10,12 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class Main {
-    public static void main(String[] args) throws ClassNotFoundException, SQLException, FileNotFoundException {
+    public static void main(String[] args)
+            throws
+            ClassNotFoundException,
+            SQLException,
+            FileNotFoundException
+    {
         // Load the configuration
         Config config = ConfigHandler.load();
         // Initialize the database

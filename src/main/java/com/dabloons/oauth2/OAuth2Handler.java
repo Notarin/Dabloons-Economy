@@ -16,8 +16,10 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class OAuth2Handler {
-    // Method that makes a GET request to the Discord API to get information about the user
-    public static String getUserJsonByAccessToken(String accessToken) throws Exception {
+    // Method that makes a GET request
+    // to the Discord API to get information about the user
+    public static String getUserJsonByAccessToken(String accessToken)
+            throws Exception {
         // The URL of the Discord API
         String API_URL = "https://discord.com/api";
 
@@ -35,7 +37,9 @@ public class OAuth2Handler {
         connection.setRequestProperty("Content-Type", "application/json");
 
         // Read the response from the API
-        BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+        BufferedReader reader = new BufferedReader(
+                new InputStreamReader(connection.getInputStream())
+        );
         String inputLine;
         StringBuilder content = new StringBuilder();
         // Read the response line by line and append it to the 'content' string
@@ -49,11 +53,14 @@ public class OAuth2Handler {
         return content.toString();
     }
 
-    // Method that makes a POST request to the Discord API to exchange an authorization code for an access token
-    public static String getAccessTokenFromCode(Config config, String code) throws IOException, InterruptedException {
+    // Method that makes a POST request
+    // to the Discord API to exchange
+    // an authorization code for an access token
+    public static String getAccessTokenFromCode(Config config, String code)
+            throws IOException, InterruptedException {
         // Construct the request object
         HttpRequest request = HttpRequest.newBuilder()
-                // Set the URL of the Discord API endpoint to send the request to
+                // Set the URL of the Discord API endpoint
                 .uri(URI.create("https://discord.com/api/oauth2/token"))
                 // Set the request body's Content-Type
                 .header("Content-Type", "application/x-www-form-urlencoded")
@@ -66,7 +73,11 @@ public class OAuth2Handler {
                         "&redirect_uri=" + config.discordAppRedirectUri()))
                 .build();
         // Send the request and read the response
-        HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> response =
+                HttpClient.newHttpClient()
+                        .send(
+                                request, HttpResponse.BodyHandlers.ofString()
+                        );
         // Parse the response body as JSON
         Gson gson = new Gson();
         JsonObject json = gson.fromJson(response.body(), JsonObject.class);
@@ -79,7 +90,9 @@ public class OAuth2Handler {
         Gson gson = new Gson();
         // Parse the JSON string and convert it to a JsonObject
         JsonObject userObject = gson.fromJson(userJson, JsonObject.class);
-        // Extract the necessary information from the JsonObject and use it to construct a User object
+        // Extract the necessary information
+        // from the JsonObject
+        // and use it to construct a User object
         return new User(
                 userObject.get("id").getAsString(),
                 userObject.get("username").getAsString(),

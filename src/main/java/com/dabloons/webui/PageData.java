@@ -25,10 +25,14 @@ class PageData {
         Path path = Paths.get("Pages/profile.html");
         // read file contents and convert to string
         indexHtml = new String(Files.readAllBytes(path))
-                .replace("{ID}", "ID: " + ctx.sessionAttribute("discordId"))
-                .replace("{USERNAME}", "Username: " + ctx.sessionAttribute("username"))
-                .replace("{DISCRIMINATOR}", "Discriminator: " + ctx.sessionAttribute("discriminator"))
-                .replace("{EMAIL}", "Email: " + ctx.sessionAttribute("email"))
+                .replace("{ID}", "ID: " +
+                        ctx.sessionAttribute("discordId"))
+                .replace("{USERNAME}", "Username: " +
+                        ctx.sessionAttribute("username"))
+                .replace("{DISCRIMINATOR}", "Discriminator: " +
+                        ctx.sessionAttribute("discriminator"))
+                .replace("{EMAIL}", "Email: " +
+                        ctx.sessionAttribute("email"))
         ;
         return indexHtml;
     }

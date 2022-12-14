@@ -11,7 +11,11 @@ import java.sql.Connection;
 
 public class Pages {
     // load method takes a Javalin server and a Config object as arguments
-    public static void load(Javalin server, Connection sqlDatabaseConnection, Config config) {
+    public static void load(
+            Javalin server,
+            Connection sqlDatabaseConnection,
+            Config config
+    ) {
         // define a route for the root path and return the index HTML page
         server.get("/", ctx -> ctx.html(PageData.indexHtml()));
         // define route for the profile path and return profile HTML page
@@ -22,7 +26,8 @@ public class Pages {
                 ctx.redirect("/");
             }
         });
-        // define a route for the login path and redirect to the Discord OAuth URL
+        // define a route for the login path
+        // and redirect to the Discord OAuth URL
         server.get("/login", ctx -> {
             if (ctx.sessionAttribute("loggedIn") != "true") {
                 ctx.redirect(config.discordOAuthUrl());
@@ -30,14 +35,19 @@ public class Pages {
                 ctx.redirect("/");
             }
         });
-        // define a route for the receiveOAuth path and process the OAuth code and user data
+        // define a route for the receiveOAuth path
+        // and process the OAuth code and user data
         server.get("/receiveOAuth", ctx -> {
             // get the OAuth code from the query parameter
             String code = ctx.queryParam("code");
             // use the Config and code to get the access token
-            String accessToken = OAuth2Handler.getAccessTokenFromCode(ConfigHandler.load(), code);
+            String accessToken = OAuth2Handler
+                    .getAccessTokenFromCode(
+                            ConfigHandler.load(), code
+                    );
             // use the access token to get the user JSON data
-            String userJson = OAuth2Handler.getUserJsonByAccessToken(accessToken);
+            String userJson = OAuth2Handler
+                    .getUserJsonByAccessToken(accessToken);
             User user = OAuth2Handler.constructUser(userJson);
             ctx.sessionAttribute("loggedIn", "true");
             ctx.sessionAttribute("discordId", user.discordId());
