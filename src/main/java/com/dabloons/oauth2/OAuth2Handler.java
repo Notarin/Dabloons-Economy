@@ -73,6 +73,7 @@ public class OAuth2Handler {
         // Return the access token from the JSON object
         return json.get("access_token").getAsString();
     }
+
     public static User constructUser(String userJson) {
         // Create a Gson instance
         Gson gson = new Gson();
