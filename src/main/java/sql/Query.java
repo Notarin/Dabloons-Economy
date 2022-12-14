@@ -2,10 +2,7 @@ package sql;
 
 import sql.objects.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class Query {
     private static User constructUser(ResultSet sqlUser) throws SQLException {
@@ -98,5 +95,32 @@ public class Query {
         }
         // Execute the prepared statement
         statement.execute();
+    }
+
+    // Create the 'users' table in the database
+    public static void createUsersTable(Connection connection) throws SQLException {
+        // Create a statement object
+        Statement statement = connection.createStatement();
+        // Use the statement to execute an SQL query that creates the 'users' table
+        statement.execute("""
+                CREATE TABLE IF NOT EXISTS users (
+                discordId text PRIMARY KEY,
+                username text NOT NULL,
+                avatar text NOT NULL,
+                discriminator integer NOT NULL,
+                banner text NOT NULL,
+                locale text NOT NULL,
+                email text NOT NULL,
+                verified boolean NOT NULL
+                )""");
+    }
+
+    public static void addColumn(String table, String value, String type, Connection connection) {
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute("ALTER TABLE " + table + " ADD COLUMN " + value + " " + type);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

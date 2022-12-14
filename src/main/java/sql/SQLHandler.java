@@ -13,15 +13,6 @@ public class SQLHandler {
         connection.close();
     }
 
-    public static void addColumn(String table, String value, String type, Connection connection) {
-        try {
-            Statement statement = connection.createStatement();
-            statement.execute("ALTER TABLE " + table + " ADD COLUMN " + value + " " + type);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
     // Create the database file
     public static void createDB() throws ClassNotFoundException, SQLException {
         // Load the JDBC driver for SQLite
@@ -40,27 +31,9 @@ public class SQLHandler {
         return DriverManager.getConnection("jdbc:sqlite:database.db");
     }
 
-    // Create the 'users' table in the database
-    public static void createUsersTable(Connection connection) throws SQLException {
-        // Create a statement object
-        Statement statement = connection.createStatement();
-        // Use the statement to execute an SQL query that creates the 'users' table
-        statement.execute("""
-                CREATE TABLE IF NOT EXISTS users (
-                discordId text PRIMARY KEY,
-                username text NOT NULL,
-                avatar text NOT NULL,
-                discriminator integer NOT NULL,
-                banner text NOT NULL,
-                locale text NOT NULL,
-                email text NOT NULL,
-                verified boolean NOT NULL
-                )""");
-    }
-
     // Initialize the database by creating the necessary tables
     public static void initDB(Connection connection) throws SQLException {
         // Create the 'users' table
-        createUsersTable(connection);
+        Query.createUsersTable(connection);
     }
 }

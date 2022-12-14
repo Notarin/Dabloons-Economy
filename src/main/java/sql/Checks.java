@@ -37,7 +37,7 @@ public class Checks {
                 res = meta.getTables(null, null, "users", null);
                 if (!res.next()) {
                     // The users table does not exist, so create it
-                    SQLHandler.createUsersTable(connection);
+                    Query.createUsersTable(connection);
                 }
             }
         } catch (SQLException e) {
@@ -61,14 +61,14 @@ public class Checks {
             String table;
             {
                 table = "users";
-                if (!columns.contains("discordId")) SQLHandler.addColumn(table, "discordId", "text", connection);
-                if (!columns.contains("username")) SQLHandler.addColumn(table, "username", "text", connection);
-                if (!columns.contains("avatar")) SQLHandler.addColumn(table, "avatar", "text", connection);
-                if (!columns.contains("discriminator")) SQLHandler.addColumn(table, "discriminator", "integer", connection);
-                if (!columns.contains("banner")) SQLHandler.addColumn(table, "banner", "text", connection);
-                if (!columns.contains("locale")) SQLHandler.addColumn(table, "locale", "text", connection);
-                if (!columns.contains("email")) SQLHandler.addColumn(table, "email", "text", connection);
-                if (!columns.contains("verified")) SQLHandler.addColumn(table, "verified", "boolean", connection);
+                if (!columns.contains("discordId")) Query.addColumn(table, "discordId", "text", connection);
+                if (!columns.contains("username")) Query.addColumn(table, "username", "text", connection);
+                if (!columns.contains("avatar")) Query.addColumn(table, "avatar", "text", connection);
+                if (!columns.contains("discriminator")) Query.addColumn(table, "discriminator", "integer", connection);
+                if (!columns.contains("banner")) Query.addColumn(table, "banner", "text", connection);
+                if (!columns.contains("locale")) Query.addColumn(table, "locale", "text", connection);
+                if (!columns.contains("email")) Query.addColumn(table, "email", "text", connection);
+                if (!columns.contains("verified")) Query.addColumn(table, "verified", "boolean", connection);
             }
         } catch (SQLException e) {
             e.printStackTrace();
