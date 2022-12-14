@@ -90,7 +90,8 @@ public class ConfigHandler {
                 // if the key does not exist in the example configuration map,
                 // print a warning message
                 System.out.println(
-                        "[WARNING] Key found in config not present in example config: "
+                        "[WARNING] Key found in config" +
+                                " not present in example config: "
                                 + configIteration.getKey());
             }
 
@@ -101,7 +102,8 @@ public class ConfigHandler {
             )) {
                 // if the values are equal,
                 // print an error message and exit the program
-                System.out.println("[ERROR] Config value unchanged, please configure key \""
+                System.out.println("[ERROR] " +
+                        "Config value unchanged, please configure key \""
                         + configIteration.getKey()
                         + "\""
                 );
@@ -116,7 +118,8 @@ public class ConfigHandler {
             if (config.get(exampleConfigIteration.getKey()) == null) {
                 // if the key does not exist in the configuration map,
                 // print an error message and exit the program
-                System.out.println("[ERROR] Key found in example config not present in config: "
+                System.out.println("[ERROR]" +
+                        " Key found in example config not present in config: "
                         + exampleConfigIteration.getKey() +
                         "\nPlease copy all missing values and set them.");
                 System.exit(1);
