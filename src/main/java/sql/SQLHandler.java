@@ -16,7 +16,7 @@ public class SQLHandler {
     public static void addColumn(String name, String type, Connection connection) {
         try {
             Statement statement = connection.createStatement();
-            statement.execute("ALTER TABLE users ADD COLUMN " + name + " " + type + " NOT NULL");
+            statement.execute("ALTER TABLE users ADD COLUMN " + name + " " + type);
         } catch (SQLException e) {
             e.printStackTrace();
         }
