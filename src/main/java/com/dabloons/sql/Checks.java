@@ -55,16 +55,31 @@ public class Checks {
             String table = "users";
 
             String[] columnNames = {
-                    "discordId", "username", "avatar", "discriminator",
-                    "banner", "locale", "email", "verified"
+                    "discordId",
+                    "username",
+                    "avatar",
+                    "discriminator",
+                    "banner",
+                    "locale",
+                    "email",
+                    "verified"
             };
             String[] columnTypes = {
-                    "text", "text", "text", "integer", "text", "text", "text", "boolean"
+                    "text",
+                    "text",
+                    "text",
+                    "integer",
+                    "text",
+                    "text",
+                    "text",
+                    "boolean"
             };
 
             for (int i = 0; i < columnNames.length; i++) {
                 if (!columns.contains(columnNames[i])) {
-                    Query.addColumn(table, columnNames[i], columnTypes[i], connection);
+                    Query.addColumn(
+                            table, columnNames[i], columnTypes[i], connection
+                    );
                 }
             }
         } catch (SQLException e) {
