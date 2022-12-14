@@ -23,7 +23,31 @@ public class Checks {
             // Close the connection
             connection.close();
         } else {
+            checkTables();
             checkColumns();
+        }
+    }
+
+    public static void checkTables() throws SQLException, ClassNotFoundException {
+        Connection connection = SQLHandler.connect();
+        try {
+            DatabaseMetaData meta = connection.getMetaData();
+            ResultSet res;
+            {
+                res = meta.getTables(null, null, "users", null);
+                if (!res.next()) {
+                    // The users table does not exist, so create it
+                    SQLHandler.createUsersTable(connection);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 

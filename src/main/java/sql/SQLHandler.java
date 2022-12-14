@@ -41,7 +41,7 @@ public class SQLHandler {
     }
 
     // Create the 'users' table in the database
-    public static void createUsersStructure(Connection connection) throws SQLException {
+    public static void createUsersTable(Connection connection) throws SQLException {
         // Create a statement object
         Statement statement = connection.createStatement();
         // Use the statement to execute an SQL query that creates the 'users' table
@@ -61,6 +61,6 @@ public class SQLHandler {
     // Initialize the database by creating the necessary tables
     public static void initDB(Connection connection) throws SQLException {
         // Create the 'users' table
-        createUsersStructure(connection);
+        createUsersTable(connection);
     }
 }
