@@ -23,13 +23,13 @@ public class Checks {
             // Close the connection
             connection.close();
         } else {
-            checkTables();
-            checkColumns();
+            Connection connection = SQLHandler.connect();
+            checkTables(connection);
+            checkColumns(connection);
         }
     }
 
-    public static void checkTables() throws SQLException, ClassNotFoundException {
-        Connection connection = SQLHandler.connect();
+    public static void checkTables(Connection connection) {
         try {
             DatabaseMetaData meta = connection.getMetaData();
             ResultSet res;
@@ -51,8 +51,7 @@ public class Checks {
         }
     }
 
-    public static void checkColumns() throws SQLException, ClassNotFoundException {
-        Connection connection = SQLHandler.connect();
+    public static void checkColumns(Connection connection) {
         try {
             DatabaseMetaData meta = connection.getMetaData();
             ResultSet res = meta.getColumns(null, null, "users", null);
