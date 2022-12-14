@@ -1,4 +1,4 @@
-package com.dabloons.webUI;
+package com.dabloons.webui;
 
 import com.dabloons.config.objects.Config;
 import io.javalin.Javalin;
