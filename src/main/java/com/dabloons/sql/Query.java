@@ -2,7 +2,11 @@ package com.dabloons.sql;
 
 import com.dabloons.sql.objects.User;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class Query {
     private static User constructUser(ResultSet sqlUser) throws SQLException {

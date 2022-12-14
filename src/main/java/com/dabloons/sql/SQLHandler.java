@@ -1,6 +1,8 @@
 package com.dabloons.sql;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class SQLHandler {
     // Initialize the database by connecting to it and creating the necessary tables if they don't exist
