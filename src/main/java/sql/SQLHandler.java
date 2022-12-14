@@ -13,10 +13,10 @@ public class SQLHandler {
         connection.close();
     }
 
-    public static void addColumn(String name, String type, Connection connection) {
+    public static void addColumn(String table, String value, String type, Connection connection) {
         try {
             Statement statement = connection.createStatement();
-            statement.execute("ALTER TABLE users ADD COLUMN " + name + " " + type);
+            statement.execute("ALTER TABLE " + table + " ADD COLUMN " + value + " " + type);
         } catch (SQLException e) {
             e.printStackTrace();
         }

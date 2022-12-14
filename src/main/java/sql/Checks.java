@@ -34,14 +34,14 @@ public class Checks {
             ResultSet res = meta.getColumns(null, null, "users", null);
             List<String> columns = new ArrayList<>();
             while (res.next()) columns.add(res.getString("COLUMN_NAME"));
-            if (!columns.contains("discordId")) SQLHandler.addColumn("discordId", "text", connection);
-            if (!columns.contains("username")) SQLHandler.addColumn("username", "text", connection);
-            if (!columns.contains("avatar")) SQLHandler.addColumn("avatar", "text", connection);
-            if (!columns.contains("discriminator")) SQLHandler.addColumn("discriminator", "integer", connection);
-            if (!columns.contains("banner")) SQLHandler.addColumn("banner", "text", connection);
-            if (!columns.contains("locale")) SQLHandler.addColumn("locale", "text", connection);
-            if (!columns.contains("email")) SQLHandler.addColumn("email", "text", connection);
-            if (!columns.contains("verified")) SQLHandler.addColumn("verified", "boolean", connection);
+            if (!columns.contains("discordId")) SQLHandler.addColumn("users", "discordId", "text", connection);
+            if (!columns.contains("username")) SQLHandler.addColumn("users", "username", "text", connection);
+            if (!columns.contains("avatar")) SQLHandler.addColumn("users", "avatar", "text", connection);
+            if (!columns.contains("discriminator")) SQLHandler.addColumn("users", "discriminator", "integer", connection);
+            if (!columns.contains("banner")) SQLHandler.addColumn("users", "banner", "text", connection);
+            if (!columns.contains("locale")) SQLHandler.addColumn("users", "locale", "text", connection);
+            if (!columns.contains("email")) SQLHandler.addColumn("users", "email", "text", connection);
+            if (!columns.contains("verified")) SQLHandler.addColumn("users", "verified", "boolean", connection);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
