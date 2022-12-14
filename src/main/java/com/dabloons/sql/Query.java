@@ -22,7 +22,8 @@ public class Query {
         );
     }
 
-    public static User userById(Connection connection, String userId) throws SQLException {
+    public static User userById(Connection connection, String userId)
+            throws SQLException {
         PreparedStatement statement = connection.prepareStatement("""
                 SELECT
                     discordId,
@@ -45,12 +46,14 @@ public class Query {
     }
 
     // Save a User to the 'users' table in the database
-    public static void saveUser(Connection connection, User user) throws SQLException {
+    public static void saveUser(Connection connection, User user)
+            throws SQLException {
         // Check if the user already exists in the database
         User existingUser = userById(connection, user.discordId());
         PreparedStatement statement;
         if (existingUser != null) {
-            // Create a prepared statement to update the User data in the 'users' table
+            // Create a prepared statement to update the User data
+            // in the 'users' table
             statement = connection.prepareStatement("""
                     UPDATE users
                     SET
@@ -63,7 +66,8 @@ public class Query {
                         verified = ?
                     WHERE discordId = ?
                     """);
-            // Set the values of the prepared statement's parameters using the data from the User object
+            // Set the values of the prepared statement's parameters
+            // using the data from the User object
             statement.setString(1, user.username());
             statement.setString(2, user.avatar());
             statement.setInt(3, user.discriminator());
@@ -74,7 +78,8 @@ public class Query {
             statement.setString(8, user.discordId());
             // Execute the prepared statement
         } else {
-            // Create a prepared statement to insert the User data into the 'users' table
+            // Create a prepared statement
+            // to insert the User data into the 'users' table
             statement = connection.prepareStatement("""
                     INSERT INTO users (
                         discordId,
@@ -87,7 +92,8 @@ public class Query {
                         verified
                     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
                     """);
-            // Set the values of the prepared statement's parameters using the data from the User object
+            // Set the values of the prepared statement's parameters
+            // using the data from the User object
             statement.setString(1, user.discordId());
             statement.setString(2, user.username());
             statement.setString(3, user.avatar());
@@ -102,10 +108,12 @@ public class Query {
     }
 
     // Create the 'users' table in the database
-    public static void createUsersTable(Connection connection) throws SQLException {
+    public static void createUsersTable(Connection connection)
+            throws SQLException {
         // Create a statement object
         Statement statement = connection.createStatement();
-        // Use the statement to execute an SQL query that creates the 'users' table
+        // Use the statement to execute an SQL query
+        // that creates the 'users' table
         statement.execute("""
                 CREATE TABLE IF NOT EXISTS users (
                 discordId text PRIMARY KEY,
@@ -119,10 +127,17 @@ public class Query {
                 )""");
     }
 
-    public static void addColumn(String table, String value, String type, Connection connection) {
+    public static void addColumn(
+            String table,
+            String value,
+            String type,
+            Connection connection
+    ) {
         try {
             Statement statement = connection.createStatement();
-            statement.execute("ALTER TABLE " + table + " ADD COLUMN " + value + " " + type);
+            statement.execute(
+                    "ALTER TABLE " + table + " ADD COLUMN " + value + " " + type
+            );
         } catch (SQLException e) {
             e.printStackTrace();
         }

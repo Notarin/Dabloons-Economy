@@ -5,7 +5,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class SQLHandler {
-    // Initialize the database by connecting to it and creating the necessary tables if they don't exist
+    // Initialize the database by connecting to it
+    // and creating the necessary tables if they don't exist
     public static void init() throws ClassNotFoundException, SQLException {
         // Check if the database file exists and create it if it doesn't
         Checks.checks();
@@ -19,14 +20,20 @@ public class SQLHandler {
     public static void createDB() throws ClassNotFoundException, SQLException {
         // Load the JDBC driver for SQLite
         Class.forName("org.sqlite.JDBC");
-        // Try to connect to the database file. If it doesn't exist, it will be created (which is exactly what will happen in this case)
-        try (Connection ignored = DriverManager.getConnection("jdbc:sqlite:database.db")) {
+        // Try to connect to the database file.
+        // If it doesn't exist, it will be created
+        // (which is exactly what will happen in this case)
+        try (
+                Connection ignored =
+                        DriverManager.getConnection("jdbc:sqlite:database.db")
+        ) {
             System.out.println("The database has been created.");
         }
     }
 
     // Connect to the database
-    public static Connection connect() throws ClassNotFoundException, SQLException {
+    public static Connection connect()
+            throws ClassNotFoundException, SQLException {
         // Load the JDBC driver for SQLite
         Class.forName("org.sqlite.JDBC");
         // Return a connection to the database
