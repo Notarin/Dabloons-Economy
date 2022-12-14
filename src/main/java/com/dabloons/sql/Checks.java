@@ -52,33 +52,20 @@ public class Checks {
             ResultSet res = meta.getColumns(null, null, "users", null);
             List<String> columns = new ArrayList<>();
             while (res.next()) columns.add(res.getString("COLUMN_NAME"));
-            String table;
-            {
-                table = "users";
-                if (!columns.contains("discordId"))
-                    Query.addColumn(
-                            table, "discordId", "text", connection);
-                if (!columns.contains("username"))
-                    Query.addColumn(
-                            table, "username", "text", connection);
-                if (!columns.contains("avatar"))
-                    Query.addColumn(
-                            table, "avatar", "text", connection);
-                if (!columns.contains("discriminator"))
-                    Query.addColumn(
-                            table, "discriminator", "integer", connection);
-                if (!columns.contains("banner"))
-                    Query.addColumn(
-                            table, "banner", "text", connection);
-                if (!columns.contains("locale"))
-                    Query.addColumn(
-                            table, "locale", "text", connection);
-                if (!columns.contains("email"))
-                    Query.addColumn(
-                            table, "email", "text", connection);
-                if (!columns.contains("verified"))
-                    Query.addColumn(
-                            table, "verified", "boolean", connection);
+            String table = "users";
+
+            String[] columnNames = {
+                    "discordId", "username", "avatar", "discriminator",
+                    "banner", "locale", "email", "verified"
+            };
+            String[] columnTypes = {
+                    "text", "text", "text", "integer", "text", "text", "text", "boolean"
+            };
+
+            for (int i = 0; i < columnNames.length; i++) {
+                if (!columns.contains(columnNames[i])) {
+                    Query.addColumn(table, columnNames[i], columnTypes[i], connection);
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
