@@ -10,7 +10,7 @@ import java.util.Map;
 // The ConfigHandler class is a utility for loading and checking configuration files.
 public class ConfigHandler {
     // static method to load the configuration file and check it against the example configuration file
-    public static Config load() {
+    public static Config load() throws FileNotFoundException {
         // check the values in the configuration file against the values in the example configuration file
         check(loadConfig(), loadExample());
         // return a Config object constructed from the values in the configuration file
@@ -18,7 +18,7 @@ public class ConfigHandler {
     }
 
     // method to load the configuration file and return a map of its key-value pairs
-    private static Map<String, Object> loadConfig() {
+    private static Map<String, Object> loadConfig() throws FileNotFoundException {
         // map to hold the key-value pairs from the configuration file
         Map<String, Object> config;
 
@@ -34,7 +34,7 @@ public class ConfigHandler {
             System.out.println(
                     "[ERROR] Config file missing, please copy config.example.yml to com.dabloons.config.yml and configure values"
             );
-            throw new RuntimeException(e);
+            throw new FileNotFoundException();
         }
 
         // return the map of key-value pairs from the configuration file
