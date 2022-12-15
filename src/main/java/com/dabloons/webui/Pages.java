@@ -17,7 +17,7 @@ public class Pages {
             Config config
     ) {
         // define a route for the root path and return the index HTML page
-        server.get("/", ctx -> ctx.html(PageData.indexHtml()));
+        server.get("/", ctx -> ctx.html(PageData.indexHtml(ctx)));
         // define route for the profile path and return profile HTML page
         server.get("/profile", ctx -> {
             if (ctx.sessionAttribute("loggedIn") == "true") {

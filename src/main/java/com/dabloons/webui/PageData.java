@@ -10,12 +10,37 @@ import java.nio.file.Paths;
 // class for static methods that return page data
 class PageData {
     // method that returns the index HTML page
-    public static String indexHtml() throws IOException {
+    public static String indexHtml(Context ctx) throws IOException {
         String indexHtml;
         // get the path to the index.html file
         Path path = Paths.get("Pages/index.html");
+        // get the profile button HTML
+        String profileButtonHtml =
+                new String(
+                        Files.readAllBytes(
+                                Paths.get(
+                                        "Pages/Widgets/Profile-Button.html"
+                                )
+                        )
+                );
+        // get the login button HTML
+        String loginButtonHtml =
+                new String(
+                        Files.readAllBytes(
+                                Paths.get(
+                                        "Pages/Widgets/Login-Button.html"
+                                )
+                        )
+                );
         // read the contents of the file and convert to a string
         indexHtml = new String(Files.readAllBytes(path));
+        if (ctx.sessionAttribute("loggedIn") == null) {
+            indexHtml = indexHtml
+                    .replace("{Profile-Button}", loginButtonHtml);
+        } else {
+            indexHtml = indexHtml
+                    .replace("{Profile-Button}", profileButtonHtml);
+        }
         return indexHtml;
     }
 
