@@ -9,6 +9,9 @@ target/
 !**/src/test/**/target/
 
 ### IntelliJ IDEA ###
+.idea/inspectionProfiles/Project_Default.xml
+.idea/shelf/Changes/shelved.patch
+.idea/shelf/Changes.xml
 .idea/modules.xml
 .idea/jarRepositories.xml
 .idea/compiler.xml
