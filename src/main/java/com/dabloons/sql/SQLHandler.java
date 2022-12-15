@@ -5,16 +5,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class SQLHandler {
-    // Initialize the database by connecting to it
-    // and creating the necessary tables if they don't exist
-    public static void init() throws ClassNotFoundException, SQLException {
-        // Check if the database file exists and create it if it doesn't
-        Checks.checks();
-        // Connect to the database
-        Connection connection = connect();
-        // Close the connection
-        connection.close();
-    }
 
     // Create the database file
     public static void createDB() throws ClassNotFoundException, SQLException {
@@ -34,6 +24,9 @@ public class SQLHandler {
     // Connect to the database
     public static Connection connect()
             throws ClassNotFoundException, SQLException {
+        // Check if the database file exists
+        // and create it if it doesn't
+        Checks.checks();
         // Load the JDBC driver for SQLite
         Class.forName("org.sqlite.JDBC");
         // Return a connection to the database
