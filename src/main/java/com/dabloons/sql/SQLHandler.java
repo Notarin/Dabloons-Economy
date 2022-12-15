@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class SQLHandler {
 
     // Create the database file
-    public static void createDB() throws ClassNotFoundException, SQLException {
+    static void createDB() throws ClassNotFoundException, SQLException {
         // Load the JDBC driver for SQLite
         Class.forName("org.sqlite.JDBC");
         // Try to connect to the database file.
@@ -22,11 +22,13 @@ public class SQLHandler {
     }
 
     // Connect to the database
-    public static Connection connect()
+    public static Connection connect(Boolean check)
             throws ClassNotFoundException, SQLException {
         // Check if the database file exists
         // and create it if it doesn't
-        Checks.checks();
+        if (check) {
+            Checks.checks();
+        }
         // Load the JDBC driver for SQLite
         Class.forName("org.sqlite.JDBC");
         // Return a connection to the database
@@ -34,7 +36,7 @@ public class SQLHandler {
     }
 
     // Initialize the database by creating the necessary tables
-    public static void initDB(Connection connection) throws SQLException {
+    static void initDB(Connection connection) throws SQLException {
         // Create the 'users' table
         Query.createUsersTable(connection);
     }

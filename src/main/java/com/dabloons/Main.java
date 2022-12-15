@@ -19,7 +19,7 @@ public class Main {
         // Load the configuration
         Config config = ConfigHandler.load();
         // Connect to the database
-        Connection connection = SQLHandler.connect();
+        Connection connection = SQLHandler.connect(true);
         // Initialize the web server
         WebServer.init(connection, config);
     }

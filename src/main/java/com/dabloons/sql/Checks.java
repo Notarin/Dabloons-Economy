@@ -17,13 +17,13 @@ public class Checks {
         if (!db.exists() || db.isDirectory()) {
             SQLHandler.createDB();
             // Create the database
-            Connection connection = SQLHandler.connect();
+            Connection connection = SQLHandler.connect(false);
             // Initialize the database by creating the necessary tables
             SQLHandler.initDB(connection);
             // Close the connection
             connection.close();
         } else {
-            Connection connection = SQLHandler.connect();
+            Connection connection = SQLHandler.connect(false);
             checkTables(connection);
             checkColumns(connection);
             connection.close();
