@@ -41,6 +41,13 @@ public class Checks {
                     Query.createUsersTable(connection);
                 }
             }
+            {
+                res = meta.getTables(null, null, "administrators", null);
+                if (!res.next()) {
+                    // The administrators table does not exist, so create it
+                    Query.createAdministratorsTable(connection);
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

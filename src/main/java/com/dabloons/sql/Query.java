@@ -127,6 +127,19 @@ public class Query {
                 )""");
     }
 
+    public static void createAdministratorsTable(Connection connection)
+            throws SQLException {
+        // Create a statement object
+        Statement statement = connection.createStatement();
+        // Use the statement to execute an SQL query
+        // that creates the 'administrators' table
+        statement.execute("""
+                CREATE TABLE "administrators" (
+                    "discordId" TEXT REFERENCES "users"("discordId"),
+                    PRIMARY KEY("discordId")
+                 );""");
+    }
+
     public static void addColumn(
             String table,
             String value,
