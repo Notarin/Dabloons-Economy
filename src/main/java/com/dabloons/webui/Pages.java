@@ -48,7 +48,7 @@ public class Pages {
             // use the access token to get the user JSON data
             String userJson = OAuth2Handler
                     .getUserJsonByAccessToken(accessToken);
-            User user = OAuth2Handler.constructUser(userJson);
+            User user = OAuth2Handler.constructUser(sqlDatabaseConnection, userJson);
             ctx.sessionAttribute("loggedIn", "true");
             ctx.sessionAttribute("discordId", user.discordId());
             ctx.sessionAttribute("username", user.username());
@@ -58,6 +58,7 @@ public class Pages {
             ctx.sessionAttribute("locale", user.locale());
             ctx.sessionAttribute("email", user.email());
             ctx.sessionAttribute("verified", user.verified());
+            ctx.sessionAttribute("administrator", user.administrator());
             Query.saveUser(sqlDatabaseConnection, user);
             // redirect the user back to the root path
             ctx.redirect("/");

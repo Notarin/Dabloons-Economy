@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Query {
-    private static User constructUser(ResultSet sqlUser) throws SQLException {
+    private static User constructUser(Connection connection, ResultSet sqlUser) throws SQLException {
         return new User(
                 sqlUser.getString("discordId"),
                 sqlUser.getString("username"),
@@ -18,7 +18,8 @@ public class Query {
                 sqlUser.getString("banner"),
                 sqlUser.getString("locale"),
                 sqlUser.getString("email"),
-                sqlUser.getBoolean("verified")
+                sqlUser.getBoolean("verified"),
+                checkAdministrator(connection, sqlUser.getString("discordId"))
         );
     }
 
@@ -39,10 +40,22 @@ public class Query {
         statement.setString(1, userId);
         ResultSet sqlUser = statement.executeQuery();
         if (sqlUser.next()) {
-            return constructUser(sqlUser);
+            return constructUser(connection, sqlUser);
         } else {
             return null;
         }
+    }
+
+    public static boolean checkAdministrator(
+            Connection connection,
+            String discordId
+    ) throws SQLException {
+        PreparedStatement statement = connection.prepareStatement(
+                "SELECT 1 FROM administrators WHERE discordId = ? LIMIT 1"
+        );
+        statement.setString(1, discordId);
+        ResultSet resultSet = statement.executeQuery();
+        return resultSet.next();
     }
 
     // Save a User to the 'users' table in the database

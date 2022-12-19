@@ -14,6 +14,10 @@ import java.net.URL;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import static com.dabloons.sql.Query.checkAdministrator;
 
 public class OAuth2Handler {
     // Method that makes a GET request
@@ -85,7 +89,8 @@ public class OAuth2Handler {
         return json.get("access_token").getAsString();
     }
 
-    public static User constructUser(String userJson) {
+    public static User constructUser(Connection connection, String userJson)
+            throws SQLException {
         // Create a Gson instance
         Gson gson = new Gson();
         // Parse the JSON string and convert it to a JsonObject
@@ -101,7 +106,8 @@ public class OAuth2Handler {
                 userObject.get("banner").getAsString(),
                 userObject.get("locale").getAsString(),
                 userObject.get("email").getAsString(),
-                userObject.get("verified").getAsBoolean()
+                userObject.get("verified").getAsBoolean(),
+                checkAdministrator(connection, userObject.get("id").getAsString())
         );
     }
 }

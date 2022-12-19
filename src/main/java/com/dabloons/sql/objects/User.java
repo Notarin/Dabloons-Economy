@@ -9,5 +9,6 @@ public record User(
         String banner,
         String locale,
         String email,
-        Boolean verified
+        Boolean verified,
+        Boolean administrator
 ) {}

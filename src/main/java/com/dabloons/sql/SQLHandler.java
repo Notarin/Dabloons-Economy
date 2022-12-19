@@ -39,5 +39,7 @@ public class SQLHandler {
     static void initDB(Connection connection) throws SQLException {
         // Create the 'users' table
         Query.createUsersTable(connection);
+        // Create the 'administrators' table
+        Query.createAdministratorsTable(connection);
     }
 }
