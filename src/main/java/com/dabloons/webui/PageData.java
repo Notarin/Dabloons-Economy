@@ -58,6 +58,8 @@ class PageData {
                         ctx.sessionAttribute("discriminator"))
                 .replace("{EMAIL}", "Email: " +
                         ctx.sessionAttribute("email"))
+                .replace("{ADMIN}", "Admin: " +
+                        ctx.sessionAttribute("administrator"))
         ;
         return indexHtml;
     }
