@@ -9,7 +9,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Query {
-    private static User constructUser(Connection connection, ResultSet sqlUser) throws SQLException {
+    private static User constructUser(Connection connection, ResultSet sqlUser)
+            throws SQLException {
         return new User(
                 sqlUser.getString("discordId"),
                 sqlUser.getString("username"),

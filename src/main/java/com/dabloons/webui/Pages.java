@@ -52,7 +52,9 @@ public class Pages {
             // use the access token to get the user JSON data
             String userJson = OAuth2Handler
                     .getUserJsonByAccessToken(accessToken);
-            User user = OAuth2Handler.constructUser(sqlDatabaseConnection, userJson);
+            User user = OAuth2Handler.constructUser(
+                    sqlDatabaseConnection, userJson
+            );
             ctx.sessionAttribute("loggedIn", "true");
             ctx.sessionAttribute("discordId", user.discordId());
             ctx.sessionAttribute("username", user.username());

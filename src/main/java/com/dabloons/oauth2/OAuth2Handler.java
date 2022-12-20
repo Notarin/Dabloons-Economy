@@ -107,7 +107,9 @@ public class OAuth2Handler {
                 userObject.get("locale").getAsString(),
                 userObject.get("email").getAsString(),
                 userObject.get("verified").getAsBoolean(),
-                checkAdministrator(connection, userObject.get("id").getAsString())
+                checkAdministrator(
+                        connection, userObject.get("id").getAsString()
+                )
         );
     }
 }

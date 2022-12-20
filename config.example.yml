@@ -1,3 +1,4 @@
+#file: noinspection LongLine
 httpServerPort: 0
 discordClientId: DISCORD_APP_CLIENT_ID
 discordClientSecret: DISCORD_APP_CLIENT_SECRET
