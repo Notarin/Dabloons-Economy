@@ -63,4 +63,11 @@ class PageData {
         ;
         return indexHtml;
     }
+
+    public static String styles() throws IOException {
+        // get path to styles.css file
+        Path path = Paths.get("Pages/styles.css");
+        // read file contents and convert to string
+        return new String(Files.readAllBytes(path));
+    }
 }

@@ -26,6 +26,10 @@ public class Pages {
                 ctx.redirect("/");
             }
         });
+        server.get("/styles.css", ctx -> {
+            ctx.contentType("text/css");
+            ctx.result(PageData.styles());
+        });
         // define a route for the login path
         // and redirect to the Discord OAuth URL
         server.get("/login", ctx -> {

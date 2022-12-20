@@ -2,49 +2,36 @@
 <html>
 <head>
     <title>Coming soon</title>
-    <style>
-        body {
-          font-family: sans-serif;
-          padding: 20px;
-          background-color: #36393f;
-          color: #fff;
-          text-align: center;
-        }
-        h1 {
-          color: #00b5ad;
-          margin-bottom: 20px;
-        }
-        ul {
-          list-style-type: none;
-          padding: 0;
-          margin: 0;
-          border-top: 1px solid #666;
-          padding-top: 20px;
-        }
-        li {
-          margin: 10px 0;
-        }
-        a {
-          text-decoration: none;
-          color: #fff;
-        }
-        a:hover {
-          color: #0077c9;
-        }
-        .content {
-          background-color: #36393f;
-          border: 1px solid #666;
-          padding: 20px;
-          border-radius: 5px;
-        }
-  </style>
+    <link href="/styles.css" rel="stylesheet">
 </head>
 <body>
-<div class="content">
-    <h1>Coming soon</h1>
-    <ul>
-        <li>{Profile-Button}</li>
-    </ul>
-</div>
+<section class="bg-gray-900 text-white">
+    <div
+            class="mx-auto max-w-screen-xl px-4 py-32 flex h-screen items-center"
+    >
+        <div class="mx-auto max-w-3xl text-center">
+            <h1
+                    class="
+                    bg-gradient-to-r from-green-300 via-blue-500 to-purple-600
+                    bg-clip-text text-5xl font-extrabold text-transparent
+                    sm:text-5xl"
+            >
+                Bank of Dabloonia
+
+            </h1>
+
+            <p class="mx-auto mt-4 max-w-xl sm:text-xl sm:leading-relaxed">
+                Welcome to the Bank of Dabloonia!
+                Our team of cool cats provide top-notch banking services.
+                Create an account to easily manage your dabloons and access
+                our range of services. Join us and experience the magic!
+            </p>
+
+            <div class="mt-8 flex flex-wrap justify-center gap-4">
+                    {Profile-Button}
+            </div>
+        </div>
+    </div>
+</section>
 </body>
 </html>

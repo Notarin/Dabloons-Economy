@@ -2,6 +2,7 @@
 database.db
 config.yml
 token.yml
+/Pages/styles.css
 
 target/
 !.mvn/wrapper/maven-wrapper.jar
