@@ -70,4 +70,14 @@ class PageData {
         // read file contents and convert to string
         return new String(Files.readAllBytes(path));
     }
+
+    public static byte[] asset(String asset) {
+        try {
+            // get path to asset file
+            Path path = Paths.get("Pages/assets/" + asset);
+            return Files.readAllBytes(path);
+        } catch (IOException e) {
+            return null;
+        }
+    }
 }

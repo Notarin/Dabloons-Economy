@@ -8,6 +8,7 @@ import com.dabloons.sql.Query;
 import com.dabloons.sql.objects.User;
 
 import java.sql.Connection;
+import java.util.Objects;
 
 public class Pages {
     // load method takes a Javalin server and a Config object as arguments
@@ -67,7 +68,18 @@ public class Pages {
             ctx.sessionAttribute("administrator", user.administrator());
             Query.saveUser(sqlDatabaseConnection, user);
             // redirect the user back to the root path
-            ctx.redirect("/");
+            ctx.redirect("/profile");
+        });
+        server.get("/asset/{asset}", ctx -> {
+            if (PageData.asset(ctx.pathParam("asset")) == null) {
+                ctx.status(404);
+            } else {
+                ctx.result(
+                        Objects.requireNonNull(
+                                PageData.asset(ctx.pathParam("asset"))
+                        )
+                );
+            }
         });
     }
 }
