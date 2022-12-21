@@ -71,14 +71,14 @@ public class Pages {
             ctx.redirect("/profile");
         });
         server.get("/asset/{asset}", ctx -> {
-            if (PageData.asset(ctx.pathParam("asset")) == null) {
-                ctx.status(404);
-            } else {
+            if (PageData.asset(ctx.pathParam("asset")) != null) {
                 ctx.result(
                         Objects.requireNonNull(
                                 PageData.asset(ctx.pathParam("asset"))
                         )
                 );
+            } else {
+                ctx.status(404);
             }
         });
     }
