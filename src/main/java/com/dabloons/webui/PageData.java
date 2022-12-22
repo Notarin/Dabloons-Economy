@@ -49,19 +49,8 @@ class PageData {
         // get path to profile.html file
         Path path = Paths.get("Pages/profile.html");
         // read file contents and convert to string
-        indexHtml = new String(Files.readAllBytes(path))
-                .replace("{ID}", "ID: " +
-                        ctx.sessionAttribute("discordId"))
-                .replace("{USERNAME}", "Username: " +
-                        ctx.sessionAttribute("username"))
-                .replace("{DISCRIMINATOR}", "Discriminator: " +
-                        ctx.sessionAttribute("discriminator"))
-                .replace("{EMAIL}", "Email: " +
-                        ctx.sessionAttribute("email"))
-                .replace("{ADMIN}", "Admin: " +
-                        ctx.sessionAttribute("administrator"))
-        ;
-        return indexHtml;
+        indexHtml = new String(Files.readAllBytes(path));
+        return Pages.processPage(ctx, indexHtml);
     }
 
     public static String styles() throws IOException {

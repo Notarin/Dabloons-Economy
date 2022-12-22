@@ -3,9 +3,10 @@ package com.dabloons.webui;
 import com.dabloons.config.ConfigHandler;
 import com.dabloons.config.objects.Config;
 import com.dabloons.oauth2.OAuth2Handler;
-import io.javalin.Javalin;
 import com.dabloons.sql.Query;
 import com.dabloons.sql.objects.User;
+import io.javalin.Javalin;
+import io.javalin.http.Context;
 
 import java.sql.Connection;
 import java.util.Objects;
@@ -81,6 +82,90 @@ public class Pages {
                 ctx.status(404);
             }
         });
+    }
+
+    public static String processPage(Context ctx, String html) {
+        return html
+                .replace("{LOGIN}",
+                        Objects.requireNonNull(
+                                Objects.requireNonNull(
+                                        ctx.sessionAttribute(
+                                                "loggedIn"
+                                        )
+                                ).toString()
+                        ))
+                .replace("{ID}",
+                        Objects.requireNonNull(
+                                Objects.requireNonNull(
+                                        ctx.sessionAttribute(
+                                                "discordId"
+                                        )
+                                ).toString()
+                        ))
+                .replace("{USERNAME}",
+                        Objects.requireNonNull(
+                                Objects.requireNonNull(
+                                        ctx.sessionAttribute(
+                                                "username"
+                                        )
+                                ).toString()
+                        ))
+                .replace("{AVATAR}",
+                        Objects.requireNonNull(
+                                Objects.requireNonNull(
+                                        ctx.sessionAttribute(
+                                                "avatar"
+                                        )
+                                ).toString()
+                        ))
+                .replace("{DISCRIMINATOR}",
+                        Objects.requireNonNull(
+                                Objects.requireNonNull(
+                                        ctx.sessionAttribute(
+                                                "discriminator"
+                                        )
+                                ).toString()
+                        ))
+                .replace("{BANNER}",
+                        Objects.requireNonNull(
+                                Objects.requireNonNull(
+                                        ctx.sessionAttribute(
+                                                "banner"
+                                        )
+                                ).toString()
+                        ))
+                .replace("{LOCALE}",
+                        Objects.requireNonNull(
+                                Objects.requireNonNull(
+                                        ctx.sessionAttribute(
+                                                "locale"
+                                        )
+                                ).toString()
+                        ))
+                .replace("{EMAIL}",
+                        Objects.requireNonNull(
+                                Objects.requireNonNull(
+                                        ctx.sessionAttribute(
+                                                "email"
+                                        )
+                                ).toString()
+                        ))
+                .replace("{VERIFIED}",
+                        Objects.requireNonNull(
+                                Objects.requireNonNull(
+                                        ctx.sessionAttribute(
+                                                "verified"
+                                        )
+                                ).toString()))
+                .replace("{ADMIN}",
+                        Objects.requireNonNull(
+                                Objects.requireNonNull(
+                                        ctx.sessionAttribute(
+                                                "administrator"
+                                        )
+                                ).toString()
+                        ))
+                ;
     }
 }
 
